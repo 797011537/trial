@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f3ec" />
+    <meta name="description" content="Thread & Form. A considered collection of everyday clothing. A demo store for practicing Azure deployment." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Thread & Form — Everyday, considered.</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#collection">Skip to collection</a>
+    <div class="announcement">A little more ease, every day. <span>Complimentary delivery on orders ₹3,000+</span></div>
+    <header class="site-header wrap">
+      <a class="wordmark" href="#" aria-label="Thread and Form home">thread<span>&</span>form<small>EVERYDAY, CONSIDERED.</small></a>
+      <nav aria-label="Main navigation"><a href="#collection">Shop the collection</a><a href="#our-story">Our story</a></nav>
+      <button id="open-bag" class="bag-button" type="button" aria-haspopup="dialog">Bag <span id="bag-count">0</span></button>
+    </header>
+    <main>
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy"><p class="eyebrow">THE EVERYDAY COLLECTION / VOL. 01</p><h1 id="hero-title">Less fuss.<br>More <em>you.</em></h1><p>Easy shapes. Grounded colours. The pieces you reach for, again and again.</p><a class="button dark" href="#collection">Find your everyday <span aria-hidden="true">↗</span></a><div class="hero-footnote"><span class="little-star" aria-hidden="true">✳</span><span>A considered wardrobe.<br>A simpler kind of dressing.</span></div></div>
+        <div class="hero-art"><div class="art-label">MADE FOR THE EVERYDAY</div><svg viewBox="0 0 600 650" role="img" aria-label="Illustration of a natural linen shirt and moss green tee hanging in a sunlit studio"><defs><linearGradient id="wall" x2="1" y2="1"><stop stop-color="#dbd5c5"/><stop offset="1" stop-color="#c4bda8"/></linearGradient><filter id="shadow"><feDropShadow dx="10" dy="15" stdDeviation="10" flood-color="#2d3224" flood-opacity=".16"/></filter></defs><rect width="600" height="650" fill="url(#wall)"/><path d="M90 650V220a210 210 0 0 1 420 0v430" fill="#e8e3d5"/><path d="M0 550L600 290V350L0 610ZM0 450L600 190V215L0 475" fill="#fff" opacity=".17"/><path d="M65 115H540" stroke="#565b46" stroke-width="5"/><path d="M180 115v50m205-50v95" stroke="#82755e" stroke-width="3"/><g transform="translate(195 160) rotate(8 150 210)" color="#68735a" filter="url(#shadow)"><use href="/images/garments.svg#tee" width="350" height="440"/></g><g transform="translate(30 115) rotate(-9 150 210)" color="#c8b896" filter="url(#shadow)"><use href="/images/garments.svg#shirt" width="370" height="470"/></g><ellipse cx="465" cy="624" rx="76" ry="13" fill="#ada68f" opacity=".5"/><path d="M442 620q-26-105 1-155m10 135q55-98 57-160m-65 90q-70-40-52-82m75 71q70-35 60-82" fill="none" stroke="#6e785b" stroke-width="6"/><path d="M420 569h78l-12 71h-54z" fill="#ac7960"/></svg><div class="edition"><span>01 / 08</span> A NEW PERSPECTIVE ON EVERYDAY</div></div>
+      </section>
+      <div class="values-strip"><div class="wrap"><span>Comfort in every detail</span><span aria-hidden="true">✳</span><span>Room to be yourself</span><span aria-hidden="true">✳</span><span>Easy to wear. Easy to love.</span></div></div>
+      <section id="collection" class="collection wrap" aria-labelledby="collection-title">
+        <div class="section-heading"><div><p class="eyebrow">GOOD PIECES. GREAT POSSIBILITIES.</p><h2 id="collection-title">Your everyday rotation.</h2></div><p>Nothing complicated.<br>Just your next favourite.</p></div>
+        <div class="shop-tools"><div id="categories" class="categories" role="group" aria-label="Filter by category"><button type="button" class="active" data-category="All" aria-pressed="true">All pieces</button></div><div class="search-sort"><label class="sr-only" for="search">Search products</label><input id="search" type="search" placeholder="Find a piece…" maxlength="100"/><label class="sr-only" for="sort">Sort products</label><select id="sort"><option value="featured">Featured</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name: A–Z</option></select></div></div>
+        <div class="results-line"><span id="result-count" role="status">Loading the collection…</span><span>All prices in INR</span></div>
+        <div id="products" class="product-grid" aria-busy="true"></div>
+        <div id="catalog-message" class="catalog-message" hidden><p id="catalog-message-text"></p><button id="retry" class="button dark" type="button" hidden>Try again</button></div>
+      </section>
+      <section id="our-story" class="story wrap"><div><p class="eyebrow">A NOTE FROM THREAD & FORM</p><h2>A little less.<br>A little better.</h2></div><div><p>We like the quiet kind of good. The shirt that feels right. The trousers that go with everything. The layer that comes along wherever the day takes you.</p><p>This is our imaginary little clothing store, built as a working demo. Browse, build a bag, and try checkout. No payment or personal details needed.</p><a href="#collection" class="text-link">Meet your new favourites <span aria-hidden="true">↗</span></a></div></section>
+    </main>
+    <footer class="wrap"><a class="footer-logo" href="#">thread&form</a><p>A demo store. A real place to practise.</p><span>© <span id="year"></span> Thread & Form</span></footer>
+    <dialog id="bag-dialog" aria-labelledby="bag-title"><div class="dialog-header"><div><p class="eyebrow">YOUR EVERYDAY FINDS</p><h2 id="bag-title">The shopping bag.</h2></div><button type="button" id="close-bag" class="icon-button" aria-label="Close shopping bag">×</button></div><div id="bag-content"></div></dialog>
+    <dialog id="confirmation" aria-labelledby="confirmation-title"><div class="confirmation-inner"><span class="confirmation-mark" aria-hidden="true">✓</span><p class="eyebrow">A LITTLE PRACTICE, COMPLETE.</p><h2 id="confirmation-title">Looking good.</h2><p id="confirmation-details"></p><p>No payment was taken. This demo order is not stored or fulfilled.</p><button class="button dark" id="close-confirmation" type="button">Back to the collection ↗</button></div></dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <noscript><p class="wrap">Please enable JavaScript to load the collection and shopping bag.</p></noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

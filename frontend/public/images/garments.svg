@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fabric" x1="0" y1="0" x2="1" y2=".5"><stop stop-color="#fff" stop-opacity=".13"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".09"/></linearGradient>
+  </defs>
+  <symbol id="shirt" viewBox="0 0 320 400">
+    <path d="M160 26v-9q0-12 10-12t10 12" fill="none" stroke="#85745b" stroke-width="3"/><path d="M160 26l-68 45h136z" fill="none" stroke="#85745b" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M119 68l-48 23-42 141 40 15 30-78-7 194q66 16 136 0l-7-194 30 78 40-15-42-141-48-23z" fill="currentColor"/>
+    <path d="M119 68l-48 23-42 141 40 15 30-78-7 194q66 16 136 0l-7-194 30 78 40-15-42-141-48-23z" fill="url(#fabric)"/>
+    <g fill="none" stroke="#332d23" stroke-opacity=".19" stroke-width="1.5"><path d="M101 161l9 174m109-174-9 174M31 226l40 15m178 0 39-15M95 354q65 13 130 0M158 104v266m10-266v266"/><path d="M114 143h32v41q-16 9-32 0zM113 150h34"/></g>
+    <path d="M119 68l41 25-24 29-25-41zm82 0-41 25 24 29 25-41z" fill="currentColor" stroke="#332d23" stroke-opacity=".18"/>
+    <g fill="#f2e9d6"><circle cx="163" cy="132" r="2.5"/><circle cx="163" cy="173" r="2.5"/><circle cx="163" cy="214" r="2.5"/><circle cx="163" cy="255" r="2.5"/><circle cx="163" cy="296" r="2.5"/><circle cx="163" cy="337" r="2.5"/></g>
+  </symbol>
+  <symbol id="tee" viewBox="0 0 320 400">
+    <path d="M160 34V20q0-12 10-12t10 12M160 34L95 78h130z" fill="none" stroke="#85745b" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M118 71l-53 26-42 76 49 28 26-39-5 194q67 14 134 0l-5-194 26 39 49-28-42-76-53-26q-42 20-84 0z" fill="currentColor"/>
+    <path d="M118 71l-53 26-42 76 49 28 26-39-5 194q67 14 134 0l-5-194 26 39 49-28-42-76-53-26q-42 20-84 0z" fill="url(#fabric)"/>
+    <path d="M118 71q2 45 42 45t42-45" fill="none" stroke="#2d332b" stroke-opacity=".25" stroke-width="7"/><path d="M121 72q5 34 39 34t39-34" fill="none" stroke="#fff" stroke-opacity=".15" stroke-width="2"/>
+    <path d="M96 345q64 12 128 0M29 167l44 26m174 0 44-26M113 170l-4 157m97-157 4 157" fill="none" stroke="#252c26" stroke-opacity=".16" stroke-width="1.5"/>
+  </symbol>
+  <symbol id="trousers" viewBox="0 0 320 400">
+    <path d="M160 15v-3q0-9 9-9t9 9M160 15L90 48h140z" fill="none" stroke="#85745b" stroke-width="3"/>
+    <path d="M91 45h138l21 320-76 6-15-227-15 227-76-6z" fill="currentColor"/><path d="M91 45h138l21 320-76 6-15-227-15 227-76-6z" fill="url(#fabric)"/>
+    <g fill="none" stroke="#312e28" stroke-opacity=".22" stroke-width="1.5"><path d="M90 64h140M109 65l-18 37m120-37 18 37M160 66v58h-11M120 72L99 351m101-279 21 279M70 355l73 5m32 0 73-5"/><path d="M105 46v16m29-16v16m52-16v16m29-16v16" stroke-width="4"/></g><circle cx="160" cy="55" r="3" fill="#d9cbb2"/>
+  </symbol>
+  <symbol id="knit" viewBox="0 0 320 400">
+    <use href="#tee"/>
+    <path d="M97 152l-7 187m15-192-7 192m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187m15-187-7 187" stroke="#fff" stroke-opacity=".16" fill="none" stroke-width="2"/>
+  </symbol>
+  <symbol id="dress" viewBox="0 0 320 400">
+    <path d="M160 18v-5q0-10 9-10t9 10M160 18L108 53h104z" fill="none" stroke="#85745b" stroke-width="3"/>
+    <path d="M121 45l-38 22-24 69 36 15 18-39 7 60-48 192q88 22 176 0l-48-192 7-60 18 39 36-15-24-69-38-22q-39 48-78 0z" fill="currentColor"/>
+    <path d="M121 45l-38 22-24 69 36 15 18-39 7 60-48 192q88 22 176 0l-48-192 7-60 18 39 36-15-24-69-38-22q-39 48-78 0z" fill="url(#fabric)"/>
+    <g fill="none" stroke="#35241b" stroke-opacity=".23" stroke-width="1.5"><path d="M121 45q39 68 78 0M120 169q40 12 80 0M122 181L96 355m43-174-13 179m34-177v181m21-183 13 179m4-179 26 174M76 354q84 20 168 0"/></g>
+  </symbol>
+</svg>

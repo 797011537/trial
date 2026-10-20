@@ -1,0 +1,114 @@
+name: Test and deploy clothing store
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: clothing-store-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  backend-checks:
+    name: Test and package API
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+        working-directory: backend
+      - run: npm test
+        working-directory: backend
+      # Dependencies are prepared on Linux, matching the App Service OS.
+      - name: Package runnable backend
+        run: zip -qr ../backend-deploy.zip package.json package-lock.json src node_modules
+        working-directory: backend
+      - uses: actions/upload-artifact@v4
+        with:
+          name: backend-package
+          path: backend-deploy.zip
+          retention-days: 7
+
+  frontend-checks:
+    name: Build storefront
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - run: npm run build
+        working-directory: frontend
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL || 'http://localhost:3001' }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/dist
+          retention-days: 7
+
+  deploy-backend:
+    name: Deploy API to Azure App Service
+    needs: [backend-checks, frontend-checks]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.DEPLOY_TO_AZURE == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      API_URL: ${{ vars.VITE_API_URL }}
+      APP_NAME: ${{ vars.AZURE_WEBAPP_NAME }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: backend-package
+      - name: Check deployment settings
+        run: |
+          test -n "$APP_NAME" || { echo 'Set the AZURE_WEBAPP_NAME repository variable.'; exit 1; }
+          node --input-type=module -e "const u = new URL(process.env.API_URL); if (u.protocol !== 'https:' || u.origin !== process.env.API_URL) throw new Error('Set VITE_API_URL to the exact HTTPS API origin, without a path or trailing slash.');"
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          package: backend-deploy.zip
+      - name: Wait for API health
+        run: curl --fail --silent --show-error --retry 12 --retry-delay 10 --retry-all-errors --max-time 20 "$API_URL/api/health"
+
+  deploy-frontend:
+    name: Deploy storefront to Azure Static Web Apps
+    needs: [deploy-backend]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.DEPLOY_TO_AZURE == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/dist
+      - uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: upload
+          app_location: frontend/dist
+          api_location: ''
+          output_location: ''
+          skip_app_build: true
+          skip_api_build: true
